@@ -8,8 +8,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.sun.istack.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,7 +33,6 @@ public class PersonDTO {
     @CPF
     private String cpf;
 
-    @NotNull
     private String birthDate;
 
     @Valid
