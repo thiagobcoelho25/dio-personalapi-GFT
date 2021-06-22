@@ -3,7 +3,6 @@ package one.digitalGFT.personalGFTapi.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -15,12 +14,12 @@ import one.digitalGFT.personalGFTapi.exception.PersonNotFoundException;
 import one.digitalGFT.personalGFTapi.repository.PersonRepository;
 
 @Service
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor
 public class PersonService {
 	
-	private final PersonRepository personRepository;
+	private PersonRepository personRepository;
 	
-	private final PersonMapper personMapper;
+	private final PersonMapper personMapper = PersonMapper.INSTANCE;
 	
 	public MessageResponseDTO createPerson(PersonDTO personDTO){
 		Person person = personMapper.toModel(personDTO);
