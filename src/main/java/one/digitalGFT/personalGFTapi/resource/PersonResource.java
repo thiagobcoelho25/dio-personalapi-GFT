@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import one.digitalGFT.personalGFTapi.dto.request.PersonDTO;
 import one.digitalGFT.personalGFTapi.dto.response.MessageResponseDTO;
+import one.digitalGFT.personalGFTapi.exception.PersonNotFoundException;
 import one.digitalGFT.personalGFTapi.service.PersonService;
 
 @RestController
@@ -37,5 +39,11 @@ public class PersonResource {
 	 @GetMapping
 	 public List<PersonDTO> listAll() {
 	    return personService.listAll();
+	}
+	 
+	 @GetMapping("/{id}")
+	 @ResponseStatus(HttpStatus.OK)
+	 public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
+	    return personService.findById(id);
 	}
 }
